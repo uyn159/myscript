@@ -1,0 +1,12 @@
+version: '3.8'
+services: 
+  service:
+    image: nginx
+    restart: always
+    container_name: mynginx
+    ports:
+      - 81:80
+    volumes:
+      - ./nginx:/usr/share/nginx/html
+
+    

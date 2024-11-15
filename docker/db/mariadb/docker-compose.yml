@@ -1,0 +1,16 @@
+version: '3'
+services:
+  maria-db:
+    image: mariadb
+    restart: always
+    container_name: mariadb-test
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
+      MYSQL_DATABASE: us_fwd_test
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ${HOME}/mariadb/data:/var/lib/mysql
+      - ./db-dumps:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
