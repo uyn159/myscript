@@ -1,0 +1,12 @@
+# Use the official registry image as the base
+FROM registry:2.8
+
+# Configure the registry to listen on all interfaces (0.0.0.0)
+# This is important for accessibility from other machines
+ENV REGISTRY_HTTP_ADDR=0.0.0.0:5000
+
+# Expose port 5000 for the registry
+EXPOSE 5000
+
+# (Optional) Add any customizations or configurations here
+# For example, you might want to configure authentication, storage, etc.

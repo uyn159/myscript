@@ -1,0 +1,18 @@
+# /var/lib/registry/docker/registry/v2/repositories
+services:
+  registry:
+    image: docker-registry
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: docker-registry
+    environment:
+      REGISTRY_HTTP_ADDR: 0.0.0.0:5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - ${HOME}/registry-data:/var/lib/registry
+
+volumes:
+  registry-data:
