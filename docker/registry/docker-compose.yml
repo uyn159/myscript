@@ -1,16 +1,14 @@
 # /var/lib/registry/docker/registry/v2/repositories
 services:
   registry:
-    image: docker-registry
+    image: factory-registry.com:1994/registry
     build:
       context: .
       dockerfile: Dockerfile
     restart: always
-    container_name: docker-registry
-    environment:
-      REGISTRY_HTTP_ADDR: 0.0.0.0:5000
+    container_name: factory-registry
     ports:
-      - "5000:5000"
+      - "1994:5000"
     volumes:
       - ${HOME}/registry-data:/var/lib/registry
 

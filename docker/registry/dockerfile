@@ -1,12 +1,16 @@
-# Use the official registry image as the base
 FROM registry:2.8
 
-# Configure the registry to listen on all interfaces (0.0.0.0)
-# This is important for accessibility from other machines
-ENV REGISTRY_HTTP_ADDR=0.0.0.0:5000
+# Create a directory for certificates
+RUN mkdir /certs
 
-# Expose port 5000 for the registry
-EXPOSE 5000
+# Copy the certificates to the image (replace with your actual paths)
+COPY registry.crt /certs/
+COPY registry.key /certs/
 
-# (Optional) Add any customizations or configurations here
-# For example, you might want to configure authentication, storage, etc.
+# Set environment variables for the registry
+ENV REGISTRY_HTTP_ADDR=0.0.0.0:1994
+ENV REGISTRY_HTTP_TLS_CERTIFICATE=/certs/registry.crt
+ENV REGISTRY_HTTP_TLS_KEY=/certs/registry.key
+
+# Expose the registry port
+EXPOSE 1994
